@@ -1,5 +1,5 @@
 export interface AI_Model {
-  id: string;
+  id: number | null;
   name: string;
   description: string;
   creator: string;

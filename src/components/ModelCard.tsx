@@ -5,18 +5,33 @@ import {
   LucideEye,
   LucideHeart,
   LucideTag,
+  LucideTrendingUp,
   LucideUserRound,
 } from "lucide-react";
 import { AI_Model } from "@/models/aimodels.model";
 import { useRouter } from "next/navigation";
 
-export default function ModelCard({ model }: { model: AI_Model }) {
+export default function ModelCard({
+  model,
+  isFeatured,
+  byViews,
+  byLikes,
+}: {
+  model: AI_Model;
+  isFeatured?: boolean;
+  byViews?: boolean;
+  byLikes?: boolean;
+}) {
   // Router for navigation
   const router = useRouter();
 
   return (
     <div className="flex flex-col w-full rounded-xl bg-graphite py-6 px-7 justify-between items-center gap-4">
-      <div className="flex justify-start items-start w-full">
+      <div
+        className={`flex ${
+          isFeatured ? "justify-between" : "justify-start"
+        } items-center w-full`}
+      >
         <Image
           src={ModelImage}
           alt="hero"
@@ -24,6 +39,16 @@ export default function ModelCard({ model }: { model: AI_Model }) {
           height={50}
           className="rounded-lg"
         />
+        {isFeatured && (
+          <div
+            className={`flex gap-3 justify-center items-center ${
+              byViews ? "text-meadow" : "text-tangerine"
+            }`}
+          >
+            <LucideTrendingUp size={20} />
+            <p className="font-bold">{byViews ? "Views" : "Likes"}</p>
+          </div>
+        )}
       </div>
       <div className="flex justify-center items-start flex-col gap-1 w-full">
         <h2 className="text-xl font-bold text-snow">{model.name}</h2>

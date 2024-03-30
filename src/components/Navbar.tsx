@@ -17,6 +17,10 @@ export default function Navbar() {
       name: "Feutured Models",
       href: "/featured",
     },
+    {
+      name: "Categories",
+      href: "/categories",
+    },
   ];
 
   const router = useRouter();

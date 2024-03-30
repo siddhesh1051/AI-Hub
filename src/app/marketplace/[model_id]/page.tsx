@@ -27,12 +27,17 @@ export default function ModelPage() {
     // Fetching Model Data
     const fetchModel = async () => {
       setLoading(true);
-      const { data: modelData } = await axios.get(
-        `https://my-json-server.typicode.com/siddhesh1051/siddhesh1051-json-server/models/${params.model_id}`
-      );
+      try {
+        const { data: modelData } = await axios.get(
+          `https://my-json-server.typicode.com/siddhesh1051/siddhesh1051-json-server/models/${params.model_id}`
+        );
 
-      setModel(modelData);
-      setLoading(false);
+        setModel(modelData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching models:", error);
+        setLoading(false);
+      }
     };
     fetchModel();
   }, [params.model_id]);
@@ -40,16 +45,21 @@ export default function ModelPage() {
   useEffect(() => {
     const fetchSimilarModels = async () => {
       if (model) {
-        const { data: similarModelsData } = await axios.get(
-          `https://my-json-server.typicode.com/siddhesh1051/siddhesh1051-json-server/models?tag=${model.tag}`
-        );
-        // Filter out the current model from the similar models
-        const filteredSimilarModels = similarModelsData.filter(
-          (similarModel: AI_Model) => similarModel.id !== model.id
-        );
-        setModelsData(filteredSimilarModels);
+        try {
+          const { data: similarModelsData } = await axios.get(
+            `https://my-json-server.typicode.com/siddhesh1051/siddhesh1051-json-server/models?tag=${model.tag}`
+          );
+          // Filter out the current model from the similar models
+          const filteredSimilarModels = similarModelsData.filter(
+            (similarModel: AI_Model) => similarModel.id !== model.id
+          );
+          setModelsData(filteredSimilarModels);
+        } catch (error) {
+          console.error("Error fetching similar models:", error);
+        }
       }
     };
+
     fetchSimilarModels();
   }, [model]);
 
@@ -71,7 +81,7 @@ export default function ModelPage() {
             />
           </div>
 
-          <div className="flex flex-col relative md:px-32 px-4">
+          <div className="flex flex-col relative md:px-32 px-4 pt-8">
             <Image
               src={ModelImage}
               alt="hero"

@@ -10,16 +10,24 @@ export default function Maeketplace() {
   const [modelsData, setModelsData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Fetching Models Data
     const fetchModels = async () => {
-      const { data: modelsData } = await axios.get(
-        "https://my-json-server.typicode.com/siddhesh1051/siddhesh1051-json-server/models"
-      );
+      setIsLoading(true);
 
-      setModelsData(modelsData);
-      console.log(modelsData);
+      try {
+        const { data: modelsData } = await axios.get(
+          "https://my-json-server.typicode.com/siddhesh1051/siddhesh1051-json-server/models"
+        );
+
+        setModelsData(modelsData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching models:", error);
+        setIsLoading(false);
+      }
     };
     fetchModels();
   }, []);
@@ -60,15 +68,21 @@ export default function Maeketplace() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 md:gap-16 gap-8 w-full">
-          {search.length !== 0
-            ? filteredData.map((model: AI_Model) => (
-                <ModelCard key={model.id} model={model} />
-              ))
-            : modelsData.map((model: AI_Model) => (
-                <ModelCard key={model.id} model={model} />
-              ))}
-        </div>
+        {!isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 md:gap-16 gap-8 w-full">
+            {search.length !== 0
+              ? filteredData.map((model: AI_Model) => (
+                  <ModelCard key={model.id} model={model} />
+                ))
+              : modelsData.map((model: AI_Model) => (
+                  <ModelCard key={model.id} model={model} />
+                ))}
+          </div>
+        ) : (
+          <div className="flex justify-center items-center w-full h-[calc(100vh-90px)]">
+            <p className="text-4xl font-bold text-lavender">Loading...</p>
+          </div>
+        )}
       </div>
     </div>
   );
