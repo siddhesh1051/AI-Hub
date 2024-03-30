@@ -9,18 +9,18 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="flex min-h-[calc(100vh-80px)] w-full flex-col items-center justify-center px-12">
-      <div className="flex justify-between items-center gap-24">
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-4">
-            <h1 className="text-6xl font-bold ">
+    <main className="flex h-full w-full flex-col items-center justify-center md:px-12 px-2 py-4">
+      <div className="flex md:flex-row flex-col justify-between md:items-center items-center gap-24">
+        <div className="flex flex-col gap-8  md:justify-start justify-center md:items-start items-center">
+          <div className="flex flex-col md:justify-start justify-center gap-4">
+            <h1 className="md:text-6xl text-4xl font-bold md:text-start text-center ">
               Discover
               <br />
               all AI Models
               <br />
               across the world!
             </h1>
-            <p className="text-2xl font-semibold text-steel">
+            <p className="text-2xl font-semibold text-steel md:text-start text-center ">
               {" "}
               Discover and utilize advanced AI models
               <br /> from more than 20k developers.

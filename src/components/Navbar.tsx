@@ -5,6 +5,7 @@ import { LucideBlocks } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import HamBurger from "@/assets/hamburger.svg";
 
 export default function Navbar() {
   const NavMenus = [
@@ -21,7 +22,7 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="flex justify-between items-center w-full py-5 px-8">
+    <div className="flex justify-between items-center w-full py-5 md:px-8 px-2">
       <div
         onClick={() => router.push("/")}
         className="flex gap-4 items-center justify-center cursor-pointer"
@@ -35,7 +36,7 @@ export default function Navbar() {
         />
         <h1 className="text-2xl font-bold text-lavender">AI Hub</h1>
       </div>
-      <div className="flex gap-6 justify-center items-center ">
+      <div className="md:flex hidden gap-6 justify-center items-center ">
         {NavMenus.map((menu) => (
           <Link
             key={menu.name}
@@ -51,6 +52,9 @@ export default function Navbar() {
             Publish Model
           </button>
         </Link>
+      </div>
+      <div className="md:hidden flex items-center justify-center">
+        <Image src={HamBurger} alt="menu" width={30} height={30} />
       </div>
     </div>
   );
