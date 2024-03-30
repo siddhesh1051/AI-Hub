@@ -4,7 +4,6 @@ import Camera from "@/assets/categoryicons/camera.svg";
 import Art from "@/assets/categoryicons/art.svg";
 import Music from "@/assets/categoryicons/music.svg";
 import Video from "@/assets/categoryicons/video.svg";
-import Book from "@/assets/categoryicons/book.svg";
 import Gaming from "@/assets/categoryicons/gaming.svg";
 import OCR from "@/assets/categoryicons/ocr.svg";
 
