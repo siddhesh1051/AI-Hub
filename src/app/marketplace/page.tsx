@@ -34,7 +34,7 @@ export default function Maeketplace() {
   };
 
   return (
-    <div className="flex flex-col w-full items-center py-4 md:px-12 my-4 gap-8">
+    <div className="flex flex-col w-full items-center py-4 md:px-32 px-6 my-4 gap-8">
       <div className="flex flex-col w-full items-start gap-2 ">
         <h1 className="text-4xl font-bold text-lavender">Browse Marketplace</h1>
         <p className="text-xl font-semibold text-steel">

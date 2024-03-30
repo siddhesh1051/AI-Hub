@@ -9,7 +9,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="flex h-full w-full flex-col items-center justify-center md:px-12 px-2 py-4">
+    <main className="flex h-full w-full flex-col items-center justify-center md:px-32 px-8 py-8">
       <div className="flex md:flex-row flex-col justify-between md:items-center items-center gap-24">
         <div className="flex flex-col gap-8  md:justify-start justify-center md:items-start items-center">
           <div className="flex flex-col md:justify-start justify-center gap-4">

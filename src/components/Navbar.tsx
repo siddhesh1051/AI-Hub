@@ -22,7 +22,7 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="flex justify-between items-center w-full py-5 md:px-8 px-2">
+    <div className="flex justify-between items-center w-full py-5 md:px-28 px-8 ">
       <div
         onClick={() => router.push("/")}
         className="flex gap-4 items-center justify-center cursor-pointer"

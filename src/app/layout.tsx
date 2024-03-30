@@ -72,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${Satoshi.className} bg-charcoal flex flex-col md:px-20 px-6 py-4 w-full text-snow min-h-[calc(100vh-90px)] `}
+        className={`${Satoshi.className} bg-charcoal flex flex-col py-4 w-full text-snow min-h-[calc(100vh-90px)] `}
       >
         <Navbar />
         {children}
