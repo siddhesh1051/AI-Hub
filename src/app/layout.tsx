@@ -4,7 +4,6 @@ import "./satoshi.css";
 import localFonts from "next/font/local";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "sonner";
-import Sidebar from "@/components/Sidebar";
 
 const Satoshi = localFonts({
   src: [

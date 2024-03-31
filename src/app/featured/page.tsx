@@ -3,7 +3,6 @@
 import ModelCard from "@/components/ModelCard";
 import { AI_Model } from "@/models/aimodels.model";
 import axios from "axios";
-import { tree } from "next/dist/build/templates/app-page";
 import React, { useEffect, useState } from "react";
 
 export default function Featured() {
