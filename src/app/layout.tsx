@@ -4,6 +4,7 @@ import "./satoshi.css";
 import localFonts from "next/font/local";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "sonner";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const Satoshi = localFonts({
   src: [
@@ -77,6 +78,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <SpeedInsights />
 
         <Toaster richColors />
       </body>
