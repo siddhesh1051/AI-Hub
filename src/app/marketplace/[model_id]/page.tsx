@@ -3,7 +3,7 @@
 import { AI_Model } from "@/models/aimodels.model";
 import axios from "axios";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import CoverImage from "@/assets/cover.svg";
 import ModelImage from "@/assets/modelImage.svg";
@@ -25,8 +25,10 @@ export default function ModelPage() {
   const [loading, setLoading] = useState(true);
   const [modelsData, setModelsData] = useState<AI_Model[]>([]);
 
-  const handleTryItOut = () => {
-    toast.info("Try it out feature coming soon!");
+  const router = useRouter();
+
+  const handleTryItOut = (model_tag: string) => {
+    router.push(`/try?model_tag=${model_tag}`);
   };
 
   useEffect(() => {
@@ -99,7 +101,7 @@ export default function ModelPage() {
               <div className="flex justify-between items-center gap-2 w-full">
                 <h1 className="text-5xl text-snow font-bold">{model?.name}</h1>
                 <button
-                  onClick={handleTryItOut}
+                  onClick={() => handleTryItOut(model?.tag ?? "")}
                   className="flex justify-center items-center gap-2 bg-lavender text-snow font-semibold px-6 py-3 rounded-xl"
                 >
                   <LucideWrench size={20} />
