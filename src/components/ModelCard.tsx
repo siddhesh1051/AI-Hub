@@ -77,7 +77,9 @@ export default function ModelCard({
         </div>
       </div>
       <button
-        onClick={() => router.push(`/marketplace/${model.id}`)}
+        onClick={() => {
+          router.push(`/marketplace/${model.id}`);
+        }}
         className="bg-lavender w-full py-2 rounded-xl text-lg font-bold"
       >
         View Details

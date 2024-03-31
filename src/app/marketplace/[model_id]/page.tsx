@@ -4,7 +4,7 @@ import { AI_Model } from "@/models/aimodels.model";
 import axios from "axios";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import CoverImage from "@/assets/cover.svg";
 import ModelImage from "@/assets/modelImage.svg";
 import {
@@ -71,6 +71,10 @@ export default function ModelPage() {
     fetchSimilarModels();
   }, [model]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       {loading ? (
@@ -98,7 +102,7 @@ export default function ModelPage() {
               className="absolute -top-16 left-32 rounded-2xl drop-shadow-xl border-2 border-charcoal"
             />
             <div className="flex flex-col w-full items-start gap-6 mt-20 ">
-              <div className="flex justify-between items-center gap-2 w-full">
+              <div className="flex md:flex-row flex-col justify-between items-center md:gap-2 gap-4 w-full">
                 <h1 className="text-5xl text-snow font-bold">{model?.name}</h1>
                 <button
                   onClick={() => handleTryItOut(model?.tag ?? "")}

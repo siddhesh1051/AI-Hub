@@ -45,12 +45,12 @@ export default function Try() {
           </>
         )}
 
-        <div className="flex  flex-col md:flex-row  justify-end items-center gap-12 w-full">
+        <div className="flex flex-col md:flex-row justify-end md:items-center gap-12 w-full">
           <button
             onClick={() => {
               toast.info("This is a dummy feature");
             }}
-            className="bg-lavender rounded-xl px-4 py-3 text-snow font-semibold text-xl w-[10%]"
+            className="bg-lavender rounded-xl px-4 py-3 text-snow font-semibold text-xl "
           >
             Submit
           </button>
