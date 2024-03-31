@@ -8,20 +8,26 @@ import React, { useEffect, useState } from "react";
 import CoverImage from "@/assets/cover.svg";
 import ModelImage from "@/assets/modelImage.svg";
 import {
-  Link,
   LucideEye,
   LucideGitMerge,
   LucideHeart,
   LucideTag,
   LucideUserRound,
+  LucideWrench,
 } from "lucide-react";
 import ModelCard from "@/components/ModelCard";
+import { atomOneDark, CopyBlock } from "react-code-blocks";
+import { toast } from "sonner";
 
 export default function ModelPage() {
   const params = useParams();
   const [model, setModel] = useState<AI_Model | null>(null);
   const [loading, setLoading] = useState(true);
   const [modelsData, setModelsData] = useState<AI_Model[]>([]);
+
+  const handleTryItOut = () => {
+    toast.info("Try it out feature coming soon!");
+  };
 
   useEffect(() => {
     // Fetching Model Data
@@ -92,34 +98,54 @@ export default function ModelPage() {
             <div className="flex flex-col w-full items-start gap-6 mt-20 ">
               <div className="flex justify-between items-center gap-2 w-full">
                 <h1 className="text-5xl text-snow font-bold">{model?.name}</h1>
-                <button className="flex justify-center items-center gap-2 bg-lavender text-snow font-semibold px-6 py-3 rounded-xl">
-                  <LucideHeart size={20} />
-                  Add to Favourites
+                <button
+                  onClick={handleTryItOut}
+                  className="flex justify-center items-center gap-2 bg-lavender text-snow font-semibold px-6 py-3 rounded-xl"
+                >
+                  <LucideWrench size={20} />
+                  Try it out
                 </button>
               </div>
-              <div className="flex justify-between items-center gap-1 w-full">
-                <div className="flex flex-col justify-start items-start">
-                  <h2 className="text-lg text-snow font-bold">Created by</h2>
-                  <div className="flex gap-2 justify-center items-center  text-steel">
-                    <LucideUserRound size={20} />
-                    <h2 className="text-base font-medium">{model?.creator}</h2>
+              <div className="flex  md:flex-row flex-col gap-4 justify-between items-start w-full">
+                <div className="flex flex-col gap-4">
+                  <div className="flex justify-between items-center gap-1 w-full">
+                    <div className="flex flex-col justify-start items-start">
+                      <h2 className="text-lg text-snow font-bold">
+                        Created by
+                      </h2>
+                      <div className="flex gap-2 justify-center items-center  text-steel">
+                        <LucideUserRound size={20} />
+                        <h2 className="text-base font-medium">
+                          {model?.creator}
+                        </h2>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center gap-6 px-2">
+                      <div className="flex justify-center items-center gap-2 text-meadow ">
+                        <LucideEye size={20} />
+                        <p>{model?.views}</p>
+                      </div>
+                      <div className="flex justify-center items-center gap-2 text-tangerine">
+                        <LucideHeart size={20} className="cursor-pointer" />
+                        <p>{model?.likes}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex justify-between items-center gap-6 px-2">
-                  <div className="flex justify-center items-center gap-2 text-meadow ">
-                    <LucideEye size={20} />
-                    <p>{model?.views}</p>
-                  </div>
-                  <div className="flex justify-center items-center gap-2 text-tangerine">
-                    <LucideHeart size={20} className="cursor-pointer" />
-                    <p>{model?.likes}</p>
-                  </div>
-                </div>
-              </div>
 
-              <div>
-                <h2 className="text-xl text-snow font-semibold">Description</h2>
-                <p className="text-base text-steel">{model?.description}</p>
+                  <div>
+                    <h2 className="text-xl text-snow font-semibold">
+                      Description
+                    </h2>
+                    <p className="text-base text-steel">{model?.description}</p>
+                  </div>
+                </div>
+                <CopyBlock
+                  text={"const result = alphaGo.playMove(boardState);"}
+                  language="javascript"
+                  theme={atomOneDark}
+                  wrapLongLines={true}
+                  onCopy={() => toast.success("Code Copied!")}
+                />
               </div>
 
               <div className="flex flex-col gap-4 items-start justify-center">
