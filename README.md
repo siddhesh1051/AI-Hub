@@ -66,7 +66,7 @@ To measure the load time I have used vercel's analytics package @vercel/speed-in
 ![Mobile Screenshot](/screenshots/mobile.png)
 
 ## Optimisation
-- Used <Image/> tag in nextjs instead of <img/> which comes with lazy loading inbuilt.
+- Used Image tag in nextjs instead of img which comes with lazy loading inbuilt.
 - A Loading state is shown until the API loads the data so that user will stay at the page.
 
 
