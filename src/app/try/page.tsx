@@ -1,13 +1,28 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { useSearchParams } from "next/navigation";
 
 export default function Try() {
   const [inputText, setInputText] = useState("");
+  const [loading, setLoading] = useState(true);
   const query = useSearchParams();
   const imageModel = query.get("model_tag");
+
+  useEffect(() => {
+    if (imageModel !== null) {
+      setLoading(false);
+    }
+  }, [imageModel]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center w-full h-[calc(100vh-90px)]">
+        <p className="text-4xl font-bold text-lavender">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col w-full items-center py-4 md:px-32 px-6 my-4 gap-8">
