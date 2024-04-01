@@ -2,6 +2,11 @@
 
 This document provides an overview of the features implemented in this application and guidance on how to explore and interact with it.
 
+## Demo Video
+
+https://github.com/siddhesh1051/AI-Hub/assets/91652255/54157712-b6e7-4f09-babc-e0c346a102ad
+
+
 ## Overview
 
 The AI Models Marketplace project is developed using Next.js, employing a mock API and data generated using JSONPlaceholder [API Link](https://my-json-server.typicode.com/siddhesh1051/siddhesh1051-json-server/models). This application is completely responsive and encompasses the following features:
