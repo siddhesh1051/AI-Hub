@@ -1,80 +1,83 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { toast } from "sonner";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function Try() {
-  const [inputText, setInputText] = useState("");
-  const [loading, setLoading] = useState(true);
+// Custom Suspense boundary component
+const SuspenseBoundary = ({ children }: { children: any }) => {
   const query = useSearchParams();
   const imageModel = query.get("model_tag");
 
-  useEffect(() => {
-    if (imageModel !== null) {
-      setLoading(false);
-    }
-  }, [imageModel]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center w-full h-[calc(100vh-90px)]">
-        <p className="text-4xl font-bold text-lavender">Loading...</p>
-      </div>
-    );
+  if (!imageModel) {
+    // Render a loading state or fallback UI here
+    return <div>Loading...</div>;
   }
 
+  return children(imageModel);
+};
+
+export default function Try() {
+  const [inputText, setInputText] = useState("");
+
   return (
-    <div className="flex flex-col w-full items-center py-4 md:px-32 px-6 my-4 gap-8">
-      <div className="flex flex-col w-full items-start gap-2 ">
-        <h1 className="text-4xl font-bold text-lavender">Try Model</h1>
-        <p className="text-xl font-semibold text-steel">
-          Try out the AI mode and see the magic.
-        </p>
-      </div>
-      <div className="flex flex-col w-full items-start gap-4 rounded-xl">
-        {imageModel === "Image Generation" ||
-        imageModel === "Computer Vision" ||
-        imageModel === "OCR" ? (
-          <>
-            <label className="text-xl font-semibold text-snow">
-              Upload Input Image
-            </label>
-            <input
-              type="file"
-              placeholder="Upload Input Image"
-              className="ring-0 outline-none border border-iron bg-graphite/30 text-snow placeholder-steel  rounded-xl focus:ring-lavender placeholder-opacity-60 focus:border-lavender block w-full p-4"
-            />
-          </>
-        ) : (
-          <>
-            <label className="text-xl font-semibold text-snow">
-              Input Text
-            </label>
-            <textarea
-              placeholder="Enter Input Text"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              className="ring-0 outline-none border border-iron bg-graphite/30 text-snow placeholder-steel  rounded-xl focus:ring-lavender placeholder-opacity-60 focus:border-lavender block w-full p-4 h-32"
-            ></textarea>
-          </>
+    <Suspense fallback={<div>Loading...</div>}>
+      <SuspenseBoundary>
+        {(imageModel: any) => (
+          <div className="flex flex-col w-full items-center py-4 md:px-32 px-6 my-4 gap-8">
+            <div className="flex flex-col w-full items-start gap-2 ">
+              <h1 className="text-4xl font-bold text-lavender">Try Model</h1>
+              <p className="text-xl font-semibold text-steel">
+                Try out the AI mode and see the magic.
+              </p>
+            </div>
+            <div className="flex flex-col w-full items-start gap-4 rounded-xl">
+              {imageModel === "Image Generation" ||
+              imageModel === "Computer Vision" ||
+              imageModel === "OCR" ? (
+                <>
+                  <label className="text-xl font-semibold text-snow">
+                    Upload Input Image
+                  </label>
+                  <input
+                    type="file"
+                    placeholder="Upload Input Image"
+                    className="ring-0 outline-none border border-iron bg-graphite/30 text-snow placeholder-steel  rounded-xl focus:ring-lavender placeholder-opacity-60 focus:border-lavender block w-full p-4"
+                  />
+                </>
+              ) : (
+                <>
+                  <label className="text-xl font-semibold text-snow">
+                    Input Text
+                  </label>
+                  <textarea
+                    placeholder="Enter Input Text"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    className="ring-0 outline-none border border-iron bg-graphite/30 text-snow placeholder-steel  rounded-xl focus:ring-lavender placeholder-opacity-60 focus:border-lavender block w-full p-4 h-32"
+                  ></textarea>
+                </>
+              )}
+
+              <div className="flex flex-col md:flex-row justify-end md:items-center gap-12 w-full">
+                <button
+                  onClick={() => {
+                    toast.info("This is a dummy feature");
+                  }}
+                  className="bg-lavender rounded-xl px-4 py-3 text-snow font-semibold text-xl "
+                >
+                  Submit
+                </button>
+              </div>
+
+              <p className="text-xl font-semibold text-steel">
+                Results will be shown here:
+              </p>
+            </div>
+          </div>
         )}
-
-        <div className="flex flex-col md:flex-row justify-end md:items-center gap-12 w-full">
-          <button
-            onClick={() => {
-              toast.info("This is a dummy feature");
-            }}
-            className="bg-lavender rounded-xl px-4 py-3 text-snow font-semibold text-xl "
-          >
-            Submit
-          </button>
-        </div>
-
-        <p className="text-xl font-semibold text-steel">
-          Results will be shown here:
-        </p>
-      </div>
-    </div>
+      </SuspenseBoundary>
+    </Suspense>
   );
 }
