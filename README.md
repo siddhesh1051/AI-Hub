@@ -53,7 +53,7 @@ NextJS (Reactjs framework), Tailwind css
 ###### react-code-blocks (To show code snippet)
 ###### lucide-react (for icons)
 
-## Speed Analytics
+## Speed Insights
 #### Load Time: 1-1.5 secs
 To measure the load time I have used vercel's analytics package @vercel/speed-insights. The information regarding each session is visible on vercel's dashboard.
 
@@ -65,7 +65,7 @@ To measure the load time I have used vercel's analytics package @vercel/speed-in
 
 ---
 
-## Speed Analytics Screenshots
+## Speed Insights Screenshots
 
 ![Desktop Screenshot](/screenshots/desktop.png)
 ![Mobile Screenshot](/screenshots/mobile.png)
